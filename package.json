@@ -1,7 +1,7 @@
 {
-  "name": "glitch-hello-node",
+  "name": "glitch-cyoa-tester",
   "version": "0.1.0",
-  "description": "A simple Node app built on fastify, instantly up and running. Built to be remixed on Glitch.com.",
+  "description": "here's hoping!",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -19,10 +19,10 @@
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-node"
   },
-  "license": "MIT",
+  "license": "Jillian Timmermann",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "CYOA"
   ]
 }
