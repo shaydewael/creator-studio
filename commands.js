@@ -11,7 +11,7 @@ const client = new Client({intents: [Intents.FLAGS.GUILDS]});
 const Interactions = {
   START_BUTTON: 'start',
   DISMISS_BUTTON: 'dismiss'
-}
+};
 
 //map games, including character name, channel IDs, etc.
 let gameStates = {};
@@ -77,10 +77,10 @@ client.on('interactionCreate', async(interaction) => {
     try {
       //the method is in the REST API verb
       let guildResponse = await DiscordRequest(createChannelEndpoint, {
-        method = 'POST',
+        method: 'POST',
         body: {
           name: 'game-${characterName}',
-          type: 0
+          type: 0,
           topic: 'Test channel for ${characterName}',
       },
     });
@@ -90,8 +90,39 @@ client.on('interactionCreate', async(interaction) => {
     const gameChannelID = guildResponse.id;
     gameStates[user.id].channel = gameChannelID;
       
-    //e
+    //empty components array removes buttons
+    //message formatting doc
+    await interaction.update({
+      content: 'Game tstarting in <#${gameChannelID}>',
+      components: [],
+    });
       
+      //create message in channel
+      const createMessageEndpoint = '/channels/${gameChannelID}/messages';
+      
+      //posts in new channel
+  let msgResponse = await DiscordRequest(createMessageEndpoint, {
+      method: 'POST',
+      body: {
+      content: 'just startin a game in here',
+      },                  
+  });
+      
+  msgResponse = await msgResponse.json();
+    
+  console.log('Posted message: ', msgResponse);
+  } catch (e) {
+    console.log('Error starting game: ', e);
+  }
+       
+} else if (customId == Interactions.DISMISS_BUTTON) {
+  await interaction.update({ content: 'No game, ok ok', components: [] });
+}
+
+});
+
+//initiates connection to gateway
+client.login(process.env.BOT_TOKEN);
     
       
 
