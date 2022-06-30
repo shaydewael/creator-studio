@@ -29,4 +29,19 @@ const GAME_COMMAND = {
 async function istallCommands(...commands) {
   const installCommandEndpoint = '/applications/${process.env.APP_ID}/commands';
   
+  for (let c of commands) {
+    //install command
+    try {
+      await DiscordRequest(installCommandEndpoint, {
+        method: 'POST',
+        body: c,
+      });
+      console.log('${c.name} command installed');
+    } catch (err) {
+        console.error('Error installing command: ', err);
+    }
+  }
 }
+
+//pass in any new commands you want to install
+installCommands(TEST_COMMAND, GAME_COMMAND);
