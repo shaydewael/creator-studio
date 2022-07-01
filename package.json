@@ -5,9 +5,11 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "start": "node app.js",
     "dev": "npx nodemon app.js"
   },
   "author": "",
+  "engines": { "node": "16.x" },
   "license": "ISC",
   "dependencies": {
     "discord.js": "^13.7.0",
