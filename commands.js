@@ -2,31 +2,38 @@ import 'dotenv/config';
 
 import { DiscordRequest } from './utils.js';
 
-//Command payloads 
-const TEST_COMMAND = {
-  name: 'test',
-  description: 'oh man hope this works',
-  type: 1,
+//Command payloads
+const LOOK_COMMAND = {
+  name: 'look',
+  description: 'Look at current room',
+  type: 1
 };
 
-//Options
-const GAME_COMMAND = {
-  name: 'game',
-  description: 'Start game',
-  options: [
-    {
-      type: 3,
-      name: 'character',
-      value: 'character',
-      description: 'enter the name of your character',
-      required: 'true',
-    },
-  ],
-  type: 1,
+const TAKE_COMMAND = {
+  name: 'take',
+  description: 'Place an item in your inventory',
+  type: 1
 };
 
+const GO_COMMAND = {
+  name: 'go',
+  description: 'Move to a different room',
+  type: 1
+};
 
-async function istallCommands(...commands) {
+const USE_COMMAND = {
+  name: 'use',
+  description: 'Use an item from inventory or in current room',
+  type: 1
+};
+
+const INVENTORY_COMMAND = {
+  name: 'inventory',
+  description: 'List items in your inventory',
+  type: 1
+};
+
+async function installCommands(...commands) {
   const installCommandEndpoint = '/applications/${process.env.APP_ID}/commands';
   
   for (let c of commands) {
@@ -44,4 +51,4 @@ async function istallCommands(...commands) {
 }
 
 //pass in any new commands you want to install
-installCommands(TEST_COMMAND, GAME_COMMAND);
+installCommands(LOOK_COMMAND, TAKE_COMMAND, GO_COMMAND, USE_COMMAND, INVENTORY_COMMAND);

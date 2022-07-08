@@ -6,6 +6,9 @@ import { getRandomEmoji, DiscordRequest } from './utils.js';
 //Gateway client
 const client = new Client({intents: [Intents.FLAGS.GUILDS]});
 
+// You could use a JSON object instead if you wanted to but I think a map is easier
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+const activeGames = new Map();
 
 //custom IDs for interactions below (can also just pass strings)
 const Interactions = {
@@ -120,6 +123,9 @@ client.on('interactionCreate', async(interaction) => {
 }
 
 });
+
+
+
 
 //initiates connection to gateway
 client.login(process.env.BOT_TOKEN);
