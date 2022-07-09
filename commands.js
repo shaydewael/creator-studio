@@ -34,7 +34,7 @@ const INVENTORY_COMMAND = {
 };
 
 async function installCommands(...commands) {
-  const installCommandEndpoint = '/applications/${process.env.APP_ID}/commands';
+  const installCommandEndpoint = `/applications/${process.env.APP_ID}/commands`;
   
   for (let c of commands) {
     //install command
@@ -43,7 +43,7 @@ async function installCommands(...commands) {
         method: 'POST',
         body: c,
       });
-      console.log('${c.name} command installed');
+      console.log(`${c.name} command installed`);
     } catch (err) {
         console.error('Error installing command: ', err);
     }
